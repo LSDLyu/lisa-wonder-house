@@ -1,0 +1,37 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import worker from '../worker.js';
+const read=(file)=>readFile(new URL('../'+file,import.meta.url),'utf8');
+test('both editions parse and contain all 13 activities with complete English text',async()=>{
+ for(const lang of ['zh','en']){
+  const code=await read(`dist/${lang}/game.js`), upgrade=await read(`dist/${lang}/upgrade.js`);
+  new vm.Script(code);new vm.Script(upgrade);new vm.Script(await read(`dist/${lang}/locale.js`));
+  const activities=code.match(/const activities=(.*);\n/)[1];
+  assert.equal(Object.keys(vm.runInNewContext('('+activities+')')).length,13);
+  if(lang==='en')for(const file of ['index.html','game.js','upgrade.js'])assert.doesNotMatch(await read(`dist/en/${file}`),/[\u3400-\u9fff]/u);
+  assert.match(code,/lisa-house-v1/); assert.match(upgrade,/u.lang='(?:zh-CN|en-US)'/);
+ }
+});
+test('localized routes, assets, canonical redirects and unknown files',async()=>{
+ const seen=[];const env={ASSETS:{fetch:async req=>{seen.push(new URL(req.url).pathname);return new Response('ok');}}};
+ for(const [prefix,lang] of [['','zh'],['/en','en']]){
+  const base=`https://edu.alading.org${prefix}/games/lisa-wonder-house`;
+  const redirect=await worker.fetch(new Request(base+'?demo=1'),env);assert.equal(redirect.status,308);assert.equal(redirect.headers.get('location'),base+'/?demo=1');
+  for(const [suffix,file] of [['','index.html'],['game.js','game.js'],['assets/lisa.png','assets/lisa.png']]){
+   const response=await worker.fetch(new Request(base+'/'+suffix),env);assert.equal(response.status,200);assert.equal(seen.at(-1),`/${lang}/${file}`);
+  }
+  assert.equal((await worker.fetch(new Request(base+'/source/en.tsv'),env)).status,404);
+ }
+ assert.equal((await worker.fetch(new Request('https://edu.alading.org/games/typewriter/'),env)).status,404);
+});
+test('existing guest and memory names localize in both directions',async()=>{
+ const code=await read('source/locale.js');
+ for(const english of [false,true]){
+  const context=vm.createContext({document:{documentElement:{lang:english?'en-US':'zh-CN'},addEventListener(){}}});
+  vm.runInContext(code,context);
+  assert.equal(vm.runInContext("houseSavedText('小桃一家')",context),english?'The Peach Family':'小桃一家');
+  assert.equal(vm.runInContext("houseSavedText('Happy birthday!')",context),english?'Happy birthday!':'生日快乐！');
+ }
+});

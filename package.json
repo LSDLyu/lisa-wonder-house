@@ -1,0 +1,8 @@
+{
+  "name": "lisa-wonder-house",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"build":"node scripts/build.mjs", "test":"node scripts/build.mjs && node --test tests/*.test.mjs", "preview":"python3 -m http.server 4180 --directory dist", "deploy":"wrangler deploy"},
+  "devDependencies": {"wrangler":"4.144.0"}
+}
