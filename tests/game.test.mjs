@@ -19,7 +19,7 @@ test('localized routes, assets, canonical redirects and unknown files',async()=>
  for(const [prefix,lang] of [['','zh'],['/en','en']]){
   const base=`https://edu.alading.org${prefix}/games/lisa-wonder-house`;
   const redirect=await worker.fetch(new Request(base+'?demo=1'),env);assert.equal(redirect.status,308);assert.equal(redirect.headers.get('location'),base+'/?demo=1');
-  for(const [suffix,file] of [['','index.html'],['game.js','game.js'],['assets/lisa.png','assets/lisa.png']]){
+  for(const [suffix,file] of [['','index.html'],['game.js','game.js'],['game-shell.js','game-shell.js'],['assets/lisa.png','assets/lisa.png']]){
    const response=await worker.fetch(new Request(base+'/'+suffix),env);assert.equal(response.status,200);assert.equal(seen.at(-1),`/${lang}/${file}`);
   }
   assert.equal((await worker.fetch(new Request(base+'/source/en.tsv'),env)).status,404);
