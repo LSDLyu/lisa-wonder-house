@@ -41,3 +41,8 @@ The Cloudflare Worker serves only the two game paths and their known assets, usi
 `directory-extension.js` adds one localized card to each games directory. Append it to a **fresh export** of the complete `lisa-games-router` production source, check all existing cards, then deploy that router through its existing configuration. Do not replace the full router with this extension.
 
 The included source and illustrations originate from the owner’s Lisa Wonder House project. No additional license is granted here.
+
+
+## Shared game navigation
+
+Both languages load `source/game-shell.js`, copied byte-for-byte from edu-site/public/game-shell.js. The common header becomes compact on scroll, and the shared footer keeps the game pages consistent. The dollhouse toolbar, activities, saved progress and game controls stay inside the existing app. `npm run build` includes the navigation in both language folders; the Worker explicitly serves it.

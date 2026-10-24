@@ -7,7 +7,7 @@ export default {
   if(url.pathname===base){url.pathname+='/';return Response.redirect(url.toString(),308);}
   const suffix=url.pathname.slice(base.length+1);
   // Only the public, build-generated game files can be served.
-  if(suffix && !/^(?:index\.html|(?:game|upgrade|locale)\.js|(?:style|upgrade)\.css|assets\/(?:house|lisa|rooms)\.png)$/.test(suffix))return new Response('Not found',{status:404});
+  if(suffix && !/^(?:index\.html|(?:game|game-shell|upgrade|locale)\.js|(?:style|upgrade)\.css|assets\/(?:house|lisa|rooms)\.png)$/.test(suffix))return new Response('Not found',{status:404});
   url.pathname=(base.startsWith('/en/')?'/en/':'/zh/')+(suffix||'index.html');
   const response=await env.ASSETS.fetch(new Request(url,request));
   const headers=new Headers(response.headers);
