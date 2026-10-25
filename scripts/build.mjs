@@ -11,7 +11,7 @@ await rm(path.join(root,'dist'), {recursive:true,force:true});
 for (const lang of ['zh','en']) {
  const out=path.join(root,'dist',lang); await mkdir(out,{recursive:true});
  await cp(path.join(source,'assets'),path.join(out,'assets'),{recursive:true});
- for(const name of ['index.html','game-shell.js','game.js','upgrade.js','style.css','upgrade.css','locale.js']) {
+ for(const name of ['index.html','site-audio.mjs','game-shell.js','game.js','upgrade.js','style.css','upgrade.css','locale.js']) {
   let value=await readFile(path.join(source,name),'utf8');
   if(lang==='en'&&['index.html','game.js','upgrade.js'].includes(name)) {
    value=translate(value).replaceAll('zh-CN','en-US');
@@ -40,6 +40,10 @@ for (const lang of ['zh','en']) {
    ]) value=value.split(from).join(to);
    value=value.replace(/Lisa\s+Wonder House/g,'Lisa’s Wonder House').replace(/Young designer\s+Lisa\s+interactive dollhouse/g,'An interactive dollhouse designed by Lisa').replace(/By\s+Lisa\s+Design/g,'Designed by Lisa').replace(/Explore\s+Lisa\s+designed this wonder house\./g,'Explore Lisa’s wonder house.').replaceAll('${g.room} .','${g.room}.');
    if(/[\u3400-\u9fff]/u.test(value))throw Error(`Untranslated text in ${name}: ${value.match(/.{0,25}[\u3400-\u9fff].{0,35}/u)?.[0]}`);
+  }
+  if(name==='index.html') {
+   const zh='https://edu.alading.org/games/lisa-wonder-house/',en='https://edu.alading.org/en/games/lisa-wonder-house/';
+   value=value.replace('</head>',`<link rel="canonical" href="${lang==='en'?en:zh}"><link rel="alternate" hreflang="zh-CN" href="${zh}"><link rel="alternate" hreflang="en" href="${en}"></head>`);
   }
   await writeFile(path.join(out,name),value);
  }
