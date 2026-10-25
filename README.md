@@ -46,3 +46,7 @@ The included source and illustrations originate from the owner’s Lisa Wonder H
 ## Shared game navigation
 
 Both languages load `source/game-shell.js`, copied byte-for-byte from edu-site/public/game-shell.js. The common header becomes compact on scroll, and the shared footer keeps the game pages consistent. The dollhouse toolbar, activities, saved progress and game controls stay inside the existing app. `npm run build` includes the navigation in both language folders; the Worker explicitly serves it.
+
+## 2026-10-25 加载与共用声音
+
+界面图片优先使用 WebP 无损版本；原始 PNG 保留。全景图仅在打开时请求，首次所需图片由约 8.08 MB 降至 3.13 MB。全站静音、音效/语音偏好与本游戏开关同时生效，关闭时停止滑梯风声，解除静音不会恢复旧的循环。页首统一语言入口，增加 canonical 和中英文替代链接。共用 `game-shell.js`、`site-audio.mjs` 由 edu-site 同步。
