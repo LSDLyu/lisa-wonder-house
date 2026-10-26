@@ -396,3 +396,8 @@
 房	 room
 次	 times
 由	By 
+开关由顶部统一控制，语音分项在页尾声音设置中。	Use the sound switch at the top; spoken hints are in the footer sound settings.
+声音由顶部统一控制。	Use the sound switch at the top.
+进度、客人、物品和装饰自动保存在当前浏览器。声音由顶部统一控制。滑梯可以暂停；减少动态效果时会逐层移动。	Progress, guests, items and decorations are saved in this browser. Use the sound switch at the top. You can pause the slide; reduced motion moves floor by floor.
+图片还没到齐，可以稍等一下，或再试一次。	Some pictures are still loading. Wait a little, or try again.
+重试图片	Retry pictures

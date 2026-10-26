@@ -50,3 +50,11 @@ Both languages load `source/game-shell.js`, copied byte-for-byte from edu-site/p
 ## 2026-10-25 加载与共用声音
 
 界面图片优先使用 WebP 无损版本；原始 PNG 保留。全景图仅在打开时请求，首次所需图片由约 8.08 MB 降至 3.13 MB。全站静音、音效/语音偏好与本游戏开关同时生效，关闭时停止滑梯风声，解除静音不会恢复旧的循环。页首统一语言入口，增加 canonical 和中英文替代链接。共用 `game-shell.js`、`site-audio.mjs` 由 edu-site 同步。
+
+## 2026-10-26 统一声音与图片传输
+
+声音总开关仅保留在共用页首；移除游戏栏、滑梯和音量面板中的重复总开关。语音使用共用分项偏好，游戏内保留独有的音量滑杆。原有游戏进度、客人和装饰继续保留。
+
+保留原 PNG/WebP，新增原尺寸压缩显示副本 `house-compact.webp`、`lisa-compact.webp`、`rooms-compact.webp`，合计约 929 KiB；页面、脚本和样式使用新版本 URL。
+
+酒店背景与人物图片加载失败后会有限重试，8 秒仍未完成或重试耗尽会显示“重试图片”；重试只补载未完成素材，不重置游戏存档。房间图集保留原 PNG 作为最终回退。
