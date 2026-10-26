@@ -58,3 +58,5 @@ Both languages load `source/game-shell.js`, copied byte-for-byte from edu-site/p
 保留原 PNG/WebP，新增原尺寸压缩显示副本 `house-compact.webp`、`lisa-compact.webp`、`rooms-compact.webp`，合计约 929 KiB；页面、脚本和样式使用新版本 URL。
 
 酒店背景与人物图片加载失败后会有限重试，8 秒仍未完成或重试耗尽会显示“重试图片”；重试只补载未完成素材，不重置游戏存档。房间图集保留原 PNG 作为最终回退。
+
+正式发布校验另发现 Worker 的公开文件清单未包含新压缩图名，首轮发布已自动恢复旧版本。补齐三个 `*-compact.webp` 路径，并增加从生产 Worker 访问全部构建文件的回归测试，防止静态预览正常而线上 404。

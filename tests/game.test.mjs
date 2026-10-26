@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile,readdir} from 'node:fs/promises';
 import vm from 'node:vm';
 import worker from '../worker.js';
 const read=(file)=>readFile(new URL('../'+file,import.meta.url),'utf8');
@@ -33,5 +33,26 @@ test('existing guest and memory names localize in both directions',async()=>{
   vm.runInContext(code,context);
   assert.equal(vm.runInContext("houseSavedText('小桃一家')",context),english?'The Peach Family':'小桃一家');
   assert.equal(vm.runInContext("houseSavedText('Happy birthday!')",context),english?'Happy birthday!':'生日快乐！');
+ }
+});
+
+test('every built page, script and image is reachable through the production Worker',async()=>{
+ const env={ASSETS:{fetch:async request=>{
+  const url=new URL(request.url);
+  try{return new Response(await readFile(new URL('../dist'+url.pathname,import.meta.url)))}
+  catch{return new Response('Not found',{status:404})}
+ }}};
+ for(const [prefix,lang] of [['','zh'],['/en','en']]){
+  const root=new URL(`../dist/${lang}/`,import.meta.url);
+  const files=await readdir(root,{recursive:true,withFileTypes:true});
+  for(const file of files.filter(entry=>entry.isFile())){
+   const suffix=file.parentPath.endsWith('/assets')?'assets/'+file.name:file.name;
+   const response=await worker.fetch(new Request(`https://edu.alading.org${prefix}/games/lisa-wonder-house/${suffix}?v=route-test`),env);
+   assert.equal(response.status,200,`${lang}/${suffix}`);
+   assert.deepEqual(Buffer.from(await response.arrayBuffer()),await readFile(new URL(suffix,root)));
+  }
+  for(const suffix of ['assets/house-compact.png','assets/unknown.webp','source/en.tsv']){
+   assert.equal((await worker.fetch(new Request(`https://edu.alading.org${prefix}/games/lisa-wonder-house/${suffix}`),env)).status,404);
+  }
  }
 });
