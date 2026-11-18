@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import vm from 'node:vm';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import worker from '../worker.js';
 const read=(file)=>readFile(new URL('../'+file,import.meta.url),'utf8');
 test('both editions parse and contain all 13 activities with complete English text',async()=>{
@@ -46,7 +48,7 @@ test('every built page, script and image is reachable through the production Wor
   const root=new URL(`../dist/${lang}/`,import.meta.url);
   const files=await readdir(root,{recursive:true,withFileTypes:true});
   for(const file of files.filter(entry=>entry.isFile())){
-   const suffix=file.parentPath.endsWith('/assets')?'assets/'+file.name:file.name;
+   const suffix=path.relative(fileURLToPath(root),path.join(file.parentPath,file.name));
    const response=await worker.fetch(new Request(`https://edu.alading.org${prefix}/games/lisa-wonder-house/${suffix}?v=route-test`),env);
    assert.equal(response.status,200,`${lang}/${suffix}`);
    assert.deepEqual(Buffer.from(await response.arrayBuffer()),await readFile(new URL(suffix,root)));

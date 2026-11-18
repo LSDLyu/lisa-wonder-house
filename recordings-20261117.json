@@ -1,0 +1,127 @@
+[
+  {
+    "file": "04_arrive_slide.mp3",
+    "text": "超惊险滑梯，到了",
+    "sha256": "0030a06c10b8aa175aadde565e101c12621ca101bac44cac01269501a547aa71"
+  },
+  {
+    "file": "05_arrive_meeting.mp3",
+    "text": "会议室，到了",
+    "sha256": "559cdf0298e9fee2d7b19a4385b0354cda37a472db69f9e8bab888188f9fe2da"
+  },
+  {
+    "file": "06_arrive_wedding.mp3",
+    "text": "棋牌与婚礼，到了",
+    "sha256": "c77d7bfa64b75d722992c678df38a847c5633571c7ea4a7a14150e9031786fe6"
+  },
+  {
+    "file": "07_arrive_birthday.mp3",
+    "text": "生日庆祝区，到了",
+    "sha256": "96546ea0828384f6afa18f0df31cbd3e039f3f7e9faa0ab4c6a84ebadd4f15cf"
+  },
+  {
+    "file": "08_arrive_lost.mp3",
+    "text": "失物招领区，到了",
+    "sha256": "921759af69a93d9088781dc0d5765679ec2fefddc7e202a2a44ac454e82b65dd"
+  },
+  {
+    "file": "09_arrive_lobby.mp3",
+    "text": "接待大厅，到了",
+    "sha256": "c666c3d2dd31c6d02e9e2a928d6a7e76c2a79babd9aafac5fd3a9527be5b8971"
+  },
+  {
+    "file": "10_arrive_pool.mp3",
+    "text": "海洋球与游泳池，到了",
+    "sha256": "a6a774c9656d816bcfeddace6b33d1215bba48a7902fa75edd920642d8b5b8ab"
+  },
+  {
+    "file": "11_arrive_spa.mp3",
+    "text": "温泉 · 餐厅 · 健身房，到了",
+    "sha256": "3aa46c3d18af5cb3391e3538ccd3ed9336f39ae2db73be2cfa869389c550db5f"
+  },
+  {
+    "file": "12_arrive_parking.mp3",
+    "text": "停车场，到了",
+    "sha256": "b9c4a19569c785618d4bc1bdb00cc11960a86625b7998a771f3b8e28dedf49a6"
+  },
+  {
+    "file": "13_clue_umbrella.mp3",
+    "text": "下雨天会撑开的小伞",
+    "sha256": "e788818dbba07b8d5bfd5ad4d9ab31e3e93f983693f41df0cc83da19d68f84ab"
+  },
+  {
+    "file": "14_clue_bear.mp3",
+    "text": "软软的，可以抱着睡觉的小熊",
+    "sha256": "af2dff8416f626d3e8065c74f719e393ce60fb58365afb3858736b07f70453eb"
+  },
+  {
+    "file": "15_clue_football.mp3",
+    "text": "踢起来会滚动的足球",
+    "sha256": "e811d06159fd95aac3a97f4c511ca3d5d431f873b2baea11739ae980bf86f73c"
+  },
+  {
+    "file": "16_complete_lost.mp3",
+    "text": "宝贝都找到主人啦！",
+    "sha256": "f33e8720b763e80a663f3fe170815c79004b2534c4de0a77bed9dbda18d02f5f"
+  },
+  {
+    "file": "17_complete_memory.mp3",
+    "text": "你记得每一张笑脸！",
+    "sha256": "c1f448a7fe91a244c36ee97f5a8f0a8350f446186cee7f7054d09a7cfe26e5c5"
+  },
+  {
+    "file": "18_complete_wedding.mp3",
+    "text": "留住幸福的一刻！",
+    "sha256": "a4793354c5b7e136cef8e97273babe1718819f905919214b2c572327514308c3"
+  },
+  {
+    "file": "19_complete_meeting.mp3",
+    "text": "大家都准备好啦，小主持人！",
+    "sha256": "449dbdba3cb6149d8279a8da55376ffefa6a7503e1e50967800be7131101e347"
+  },
+  {
+    "file": "20_complete_balls.mp3",
+    "text": "三件小宝藏都找到啦！",
+    "sha256": "ba483549b0e7ced149a19f3c4cfde4754b1e72a3f51013b3817bc846767abc20"
+  },
+  {
+    "file": "21_complete_pool.mp3",
+    "text": "小鸭子们排好队啦！",
+    "sha256": "97481b4877f3bcc71c30b27680ee8a3162cbaefe905b922dc5f0e7553bde29b8"
+  },
+  {
+    "file": "22_complete_spa.mp3",
+    "text": "暖暖的，整个人都放松啦！",
+    "sha256": "2ff82a577a6060ad8d5411a2cf0ae309db9b7ed928ea636bfa88d185c22b06de"
+  },
+  {
+    "file": "23_complete_food.mp3",
+    "text": "谢谢你，这一餐真好吃！",
+    "sha256": "c81740214b2a6105a246eb5c896d5345e247b51d896c24d54bfab7bba776088e"
+  },
+  {
+    "file": "24_complete_gym.mp3",
+    "text": "运动完成，活力满满！",
+    "sha256": "22fd74e294781014b85e1d83673adcb8558c93d9327560a300ae522271b5f5c3"
+  },
+  {
+    "file": "25_complete_parking.mp3",
+    "text": "停车完成，去楼上玩吧！",
+    "sha256": "5b71821d894f99866802fc9cb73dd0e51fff22cb2ac85ed0709dee799fe1f82c"
+  },
+  {
+    "file": "26_complete_birthday.mp3",
+    "text": "许好愿啦，生日纪念照也存进纪念册了！",
+    "sha256": "5be3e867894dac99cb5ebc5bf51e4dce091b9b5ad2ced8cd0c1fed9fbbfbba62"
+  },
+  {
+    "file": "27_welcome_checkin.mp3",
+    "text": "欢迎入住",
+    "sha256": "40e3f7492cae328f49856a9dfd10237b5427868389fbd3950a44fdacab92c09a"
+  },
+  {
+    "file": "28_guest_wishes.mp3",
+    "text": "来看看客人的愿望吧",
+    "sha256": "6f2a1aafc90ad8228d82bc015bca7c271e981962e5406d4a215bc56798427e88"
+  }
+]

@@ -60,3 +60,16 @@ Both languages load `source/game-shell.js`, copied byte-for-byte from edu-site/p
 酒店背景与人物图片加载失败后会有限重试，8 秒仍未完成或重试耗尽会显示“重试图片”；重试只补载未完成素材，不重置游戏存档。房间图集保留原 PNG 作为最终回退。
 
 正式发布校验另发现 Worker 的公开文件清单未包含新压缩图名，首轮发布已自动恢复旧版本。补齐三个 `*-compact.webp` 路径，并增加从生产 Worker 访问全部构建文件的回归测试，防止静态预览正常而线上 404。
+
+## Lisa voice recordings (2026-11-17)
+
+Chinese prompts use the 25 user-approved MP3s (04–28) without re-encoding.
+See recordings-20261117.json for scene strings and SHA-256 hashes.
+Clips 01–03 belong to the separately managed number-path game.
+Check-in uses clip 27; reopening an already-checked-in guest uses clip 28.
+English and unrecorded prompts retain browser speech. Playback obeys existing
+voice/mute settings and stops on cleanup, visibility change, or new speech.
+Failed playback falls back once only while audio is still allowed.
+No API, analytics, external voice service, or new credentials were introduced.
+This change is local only until the existing guarded release process is authorized
+and verified. Do not deploy the edu homepage or replace its navigation Worker.

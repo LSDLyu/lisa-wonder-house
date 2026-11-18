@@ -103,8 +103,9 @@ function reception(){
  if(!state.guest)newGuest();const g=state.guest;
  if(g.stage==='waiting'){
  body(instruction(`${g.name}来了！先安排房间，他们还想体验${activities[g.wish][0]}。`)+`<span class="big-emoji">${g.emoji}</span><div class="choice-grid">${['701','702','801'].map(r=>`<button class="choice" data-checkin="${r}"><span class="emoji">🔑</span>${r} 号房<br><small>空闲客房</small></button>`).join('')}</div><p class="muted">选一张房卡，帮客人办理入住。</p>`);
- $$('[data-checkin]').forEach(b=>b.onclick=()=>{g.room=b.dataset.checkin;g.stage='checkedin';earn('reception');body(`<div class="success"><div class="award">🔑</div><h3>欢迎入住 ${g.room}！</h3><p>${g.name}想体验${activities[g.wish][0]}。</p><div class="button-row"><button id="serveGuest" class="primary">陪客人去玩</button><button id="guestLater" class="secondary">先去房间看看</button></div></div>`);on('serveGuest',followGuest);on('guestLater',()=>{state.selectedRoom=g.room;loadRoom();openActivity('room')});speak('欢迎入住，来看看客人的愿望吧')});
+ $$('[data-checkin]').forEach(b=>b.onclick=()=>{g.room=b.dataset.checkin;g.stage='checkedin';earn('reception');body(`<div class="success"><div class="award">🔑</div><h3>欢迎入住 ${g.room}！</h3><p>${g.name}想体验${activities[g.wish][0]}。</p><div class="button-row"><button id="serveGuest" class="primary">陪客人去玩</button><button id="guestLater" class="secondary">先去房间看看</button></div></div>`);on('serveGuest',followGuest);on('guestLater',()=>{state.selectedRoom=g.room;loadRoom();openActivity('room')});speak(document.documentElement.lang.startsWith('zh')?'欢迎入住':'欢迎入住，来看看客人的愿望吧')});
  }else if(g.stage==='checkedin'){
+ if(document.documentElement.lang.startsWith('zh'))speak('来看看客人的愿望吧');
  body(instruction(`${g.name}已经住进 ${g.room} 号房间。`)+`<span class="big-emoji">${g.emoji}</span><div class="service-route">想体验：${activities[g.wish][1]} ${activities[g.wish][0]}<br>目的地：${floors[activities[g.wish][2]].id} 层</div><button id="serveGuest" class="primary">陪客人去玩</button>`);on('serveGuest',followGuest);
  }else{
  const service=g.quality*10,total=20+service;
